@@ -1,0 +1,168 @@
+<mxfile host="Electron" modified="2026-09-08T13:57:09.112Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" version="21.6.8" etag="J4CcNNZyyvnfEBHeNPOe" type="device" pages="2">
+  <diagram id="main-flow" name="Main Flowchart">
+    <mxGraphModel dx="866" dy="558" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="ROBO RUMBLE 2026 — AUTONOMOUS RACING MAIN PROGRAM FLOWCHART" style="text;html=1;strokeColor=none;fillColor=none;fontSize=20;fontStyle=1;fontColor=#0b3d91;" parent="1" vertex="1">
+          <mxGeometry x="340" y="20" width="520" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="s" value="START" style="startend" parent="1" vertex="1">
+          <mxGeometry x="520" y="110" width="150" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="i" value="Initialize Hardware • Arduino Mega I/O • HC-SR04 sensors • L298N motor outputs • Serial / OLED" style="process" parent="1" vertex="1">
+          <mxGeometry x="270" y="200" width="620" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="c" value="Sensor Check / Calibration Validate ultrasonic readings Set initial race parameters" style="process" parent="1" vertex="1">
+          <mxGeometry x="255" y="330" width="650" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="w" value="WAIT FOR START" style="action" parent="1" vertex="1">
+          <mxGeometry x="500" y="450" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="r" value="Read Sensors Front + Left + Right HC-SR04" style="io" parent="1" vertex="1">
+          <mxGeometry x="450" y="525" width="290" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="d1" value="Obstacle within SAFE_DISTANCE?" style="decision" parent="1" vertex="1">
+          <mxGeometry x="485" y="630" width="220" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="go" value="RACE / DRIVE FORWARD Set L298N PWM to base speed" style="action" parent="1" vertex="1">
+          <mxGeometry x="40" y="665" width="355" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="avoid" value="OBSTACLE AVOID Compare left vs right clearance Steer toward open side" style="action" parent="1" vertex="1">
+          <mxGeometry x="760" y="655" width="450" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="d2" value="Path clear?" style="decision" parent="1" vertex="1">
+          <mxGeometry x="770" y="785" width="180" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="recover" value="RECOVER Controlled search / pivot Reacquire clear path" style="action" parent="1" vertex="1">
+          <mxGeometry x="1020" y="785" width="380" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="finish" value="FINISH DETECTED?" style="decision" parent="1" vertex="1">
+          <mxGeometry x="370" y="775" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="stop" value="STOP MOTORS Show race result Safe output state" style="danger" parent="1" vertex="1">
+          <mxGeometry x="290" y="920" width="390" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="loop" value="REPEAT MAIN LOOP" style="startend" parent="1" vertex="1">
+          <mxGeometry x="445" y="1045" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" parent="1" source="s" target="i" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" parent="1" source="i" target="c" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" parent="1" source="c" target="w" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" parent="1" source="w" target="r" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" parent="1" source="r" target="d1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;labelPosition=center;verticalLabelPosition=middle;" parent="1" source="d1" target="go" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;labelPosition=center;verticalLabelPosition=middle;" parent="1" source="d1" target="avoid" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" parent="1" source="go" target="finish" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;labelPosition=center;verticalLabelPosition=middle;" parent="1" source="finish" target="stop" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;labelPosition=center;verticalLabelPosition=middle;" parent="1" source="finish" target="r" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" parent="1" source="avoid" target="d2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;labelPosition=center;verticalLabelPosition=middle;" parent="1" source="d2" target="recover" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;labelPosition=center;verticalLabelPosition=middle;" parent="1" source="d2" target="r" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" parent="1" source="recover" target="r" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" parent="1" source="stop" target="loop" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" parent="1" source="loop" target="r" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="architecture" name="System Architecture">
+    <mxGraphModel dx="1420" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t2" value="ROBO RUMBLE — SOFTWARE / HARDWARE ARCHITECTURE" style="text;html=1;strokeColor=none;fillColor=none;fontSize=20;fontStyle=1;fontColor=#0b3d91;" parent="1" vertex="1">
+          <mxGeometry x="310" y="20" width="580" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sf" value="FRONT HC-SR04 TRIG D30 / ECHO D31" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="60" y="150" width="210" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="sl" value="LEFT HC-SR04 TRIG D32 / ECHO D33" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="60" y="250" width="210" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="sr" value="RIGHT HC-SR04 TRIG D34 / ECHO D35" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="60" y="350" width="210" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="mega" value="ARDUINO MEGA 2560 MAIN CONTROL / STATE MACHINE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="385" y="235" width="330" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="nav" value="NAVIGATION LOGIC Sensor filtering Obstacle decision Speed selection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="385" y="410" width="330" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="l298" value="L298N MOTOR DRIVER IN1–IN4: D24–D27 ENA: D5 / ENB: D6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="790" y="230" width="300" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="mot" value="4 × DC GEAR MOTORS Front-Left | Front-Right Rear-Left | Rear-Right" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="1170" y="235" width="270" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="power" value="POWER SYSTEM Battery → Switch → Motor supply Buck converter → logic 5 V" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="785" y="490" width="305" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="disp" value="OLED / SERIAL DIAGNOSTICS State • distance • speed" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+          <mxGeometry x="1170" y="430" width="270" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="PROGRAMMING PIPELINE: SENSE → FILTER → DECIDE → ACT → VERIFY  Safety principle: invalid sensor data must never cause uncontrolled acceleration." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="360" y="650" width="720" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="Sensor data" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;" parent="1" edge="1" source="sf" target="mega">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="Sensor data" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;" parent="1" edge="1" source="sl" target="mega">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="Sensor data" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;" parent="1" edge="1" source="sr" target="mega">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="Raw readings" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;" parent="1" edge="1" source="mega" target="nav">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" value="Speed + direction" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;" parent="1" edge="1" source="nav" target="l298">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" value="Motor drive" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;" parent="1" edge="1" source="l298" target="mot">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" value="Status" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;" parent="1" edge="1" source="mega" target="disp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a8" value="5 V logic" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;" parent="1" edge="1" source="power" target="mega">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a9" value="Motor supply" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;fontSize=11;" parent="1" edge="1" source="power" target="l298">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
